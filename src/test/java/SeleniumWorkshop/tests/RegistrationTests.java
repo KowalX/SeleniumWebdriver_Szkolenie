@@ -1,32 +1,23 @@
 package SeleniumWorkshop.tests;
 
-
-import SeleniumWorkshop.pages.RegistrationConfirmPage;
-import SeleniumWorkshop.pages.HomePage;
-import SeleniumWorkshop.pages.RegisterPage;
+import SeleniumWorkshop.pages.PageObjectManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationTests {
 
     private static final String PAGE_URL = "http://newtours.demoaut.com";
     private WebDriver driver;
-    private HomePage homePage;
-    private RegisterPage registerPage;
-    private RegistrationConfirmPage registrationConfirmPage;
+    private PageObjectManager manager;
 
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        homePage = PageFactory.initElements(driver, HomePage.class);
-        registerPage = PageFactory.initElements(driver, RegisterPage.class);
-        registrationConfirmPage = PageFactory.initElements(driver, RegistrationConfirmPage.class);
-
+        manager = new PageObjectManager(driver);
         driver.get(PAGE_URL);
     }
 
@@ -47,15 +38,14 @@ public class RegistrationTests {
         String state = "Pomorskie";
         String postalCode = "88-222";
 
+        manager.getHomePage().clickOnRegisterLink();
 
-        homePage.clickOnRegisterLink();
+        manager.getRegisterPage().fillContactInformation(firstName, lastName, phoneNumber, emailAddress);
+        manager.getRegisterPage().fillMailingInformation(addressFirstLine, addressSecondLine, city, state, postalCode, country);
+        manager.getRegisterPage().fillUserInformation(userName, password);
+        manager.getRegisterPage().clickOnRegisterButton();
 
-        registerPage.fillContactInformation(firstName, lastName, phoneNumber, emailAddress);
-        registerPage.fillMailingInformation(addressFirstLine, addressSecondLine, city, state, postalCode, country);
-        registerPage.fillUserInformation(userName, password);
-        registerPage.clickOnRegisterButton();
-
-        registrationConfirmPage.signOffAvailable();
+        manager.getRegistrationConfirmPage().signOffAvailable();
     }
 
     @After

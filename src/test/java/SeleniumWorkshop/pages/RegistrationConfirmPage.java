@@ -2,6 +2,8 @@ package SeleniumWorkshop.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,14 +13,11 @@ import static org.junit.Assert.assertTrue;
  */
 public class RegistrationConfirmPage {
 
-    private WebDriver driver;
-
-    public RegistrationConfirmPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(linkText = "SIGN-OFF")
+    private WebElement signOffElement;
 
     public void signOffAvailable() {
-        assertTrue(driver.findElement(By.linkText("SIGN-OFF")).isDisplayed());
-        assertEquals("User was not logged in", "SIGN-OFF", driver.findElement(By.linkText("SIGN-OFF")).getText());
+        assertTrue(signOffElement.isDisplayed());
+        assertEquals("User was not logged in", "SIGN-OFF", signOffElement.getText());
     }
 }

@@ -2,6 +2,8 @@ package SeleniumWorkshop.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 /**
@@ -9,36 +11,72 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class RegisterPage {
 
-    private WebDriver driver;
+    @FindBy(name = "firstName")
+    private WebElement firstNameElement;
 
-    public RegisterPage(WebDriver driver){
-        this.driver = driver;
-    }
+    @FindBy(name = "lastName")
+    private WebElement lastNameElement;
+
+    @FindBy(name = "phone")
+    private WebElement phoneElement;
+
+    @FindBy(id = "userName")
+    private WebElement userNameElement;
+
+    @FindBy(name = "address1")
+    private WebElement address1Element;
+
+    @FindBy(name = "address2")
+    private WebElement address2Element;
+
+    @FindBy(name = "city")
+    private WebElement cityElement;
+
+    @FindBy(name = "state")
+    private WebElement stateElement;
+
+    @FindBy(name = "postalCode")
+    private WebElement postalCodeElement;
+
+    @FindBy(name = "country")
+    private WebElement countryElement;
+
+    @FindBy(id = "email")
+    private WebElement emailElement;
+
+    @FindBy(name = "password")
+    private WebElement passwordElement;
+
+    @FindBy(name = "confirmPassword")
+    private WebElement confirmPasswordElement;
+
+    @FindBy(name = "register")
+    private WebElement registerElement;
 
     public void fillContactInformation(String firstName, String lastName, String phoneNumber, String emailAddress){
-        driver.findElement(By.name("firstName")).sendKeys(firstName);
-        driver.findElement(By.name("lastName")).sendKeys(lastName);
-        driver.findElement(By.name("phone")).sendKeys(phoneNumber);
-        driver.findElement(By.id("userName")).sendKeys(emailAddress);
+        firstNameElement.sendKeys(firstName);
+        lastNameElement.sendKeys(lastName);
+        phoneElement.sendKeys(phoneNumber);
+        userNameElement.sendKeys(emailAddress);
     }
 
     public void fillMailingInformation(String addressFirstLine, String addressSecondLine, String city,
                                        String state, String postalCode, String country){
-        driver.findElement(By.name("address1")).sendKeys(addressFirstLine);
-        driver.findElement(By.name("address2")).sendKeys(addressSecondLine);
-        driver.findElement(By.name("city")).sendKeys(city);
-        driver.findElement(By.name("state")).sendKeys(state);
-        driver.findElement(By.name("postalCode")).sendKeys(postalCode);
-        new Select(driver.findElement(By.name("country"))).selectByVisibleText(country);
+        address1Element.sendKeys(addressFirstLine);
+        address2Element.sendKeys(addressSecondLine);
+        cityElement.sendKeys(city);
+        stateElement.sendKeys(state);
+        postalCodeElement.sendKeys(postalCode);
+        new Select(countryElement).selectByVisibleText(country);
     }
 
     public void fillUserInformation(String userName, String password) {
-        driver.findElement(By.id("email")).sendKeys(userName);
-        driver.findElement(By.name("password")).sendKeys(password);
-        driver.findElement(By.name("confirmPassword")).sendKeys(password);
+        emailElement.sendKeys(userName);
+        passwordElement.sendKeys(password);
+        confirmPasswordElement.sendKeys(password);
     }
 
     public void clickOnRegisterButton() {
-        driver.findElement(By.name("register")).click();
+        registerElement.click();
     }
 }

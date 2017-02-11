@@ -24,8 +24,8 @@ public class RegistrationTests {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         homePage = PageFactory.initElements(driver, HomePage.class);
-        registerPage = new RegisterPage(driver);
-        registrationConfirmPage = new RegistrationConfirmPage(driver);
+        registerPage = PageFactory.initElements(driver, RegisterPage.class);
+        registrationConfirmPage = PageFactory.initElements(driver, RegistrationConfirmPage.class);
 
         driver.get(PAGE_URL);
     }

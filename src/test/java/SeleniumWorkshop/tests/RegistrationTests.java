@@ -1,15 +1,15 @@
 package SeleniumWorkshop.tests;
 
-import static org.junit.Assert.*;
 
+import SeleniumWorkshop.pages.RegistrationConfirmPage;
 import SeleniumWorkshop.pages.HomePage;
 import SeleniumWorkshop.pages.RegisterPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationTests {
 
@@ -17,19 +17,23 @@ public class RegistrationTests {
     private WebDriver driver;
     private HomePage homePage;
     private RegisterPage registerPage;
+    private RegistrationConfirmPage registrationConfirmPage;
 
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        homePage = new HomePage(driver);
+        homePage = PageFactory.initElements(driver, HomePage.class);
         registerPage = new RegisterPage(driver);
+        registrationConfirmPage = new RegistrationConfirmPage(driver);
+
         driver.get(PAGE_URL);
     }
 
     @Test
     public void registerTest() throws InterruptedException {
 
+        //Test case properties
         String userName = "Ben";
         String password = "xxx";
         String firstName = "Zenek";
@@ -38,7 +42,7 @@ public class RegistrationTests {
         String emailAddress = "xxx@wp.pl";
         String country = "POLAND";
         String addressFirstLine = "krolewska 202";
-        String addressSecondLine = "krolewska 202";
+        String addressSecondLine = "krol 202";
         String city = "Gdansk";
         String state = "Pomorskie";
         String postalCode = "88-222";
@@ -51,19 +55,11 @@ public class RegistrationTests {
         registerPage.fillUserInformation(userName, password);
         registerPage.clickOnRegisterButton();
 
-        Thread.sleep(5000);
-//        driver.findElement(By.xpath("//a[contains(.,' sign-in ')]")).click();
-//        driver.findElement(By.xpath("//input[@name='userName']")).sendKeys(userName);
-//        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
-//        driver.findElement(By.xpath("//input[@alt='Login']")).click();
-
-        assertTrue(driver.findElement(By.linkText("SIGN-OFF")).isDisplayed());
-        assertEquals("User was not logged in", "SIGN-OFF", driver.findElement(By.linkText("SIGN-OFF")).getText());
+        registrationConfirmPage.signOffAvailable();
     }
 
     @After
     public void tearDown() {
         driver.quit();
     }
-
 }

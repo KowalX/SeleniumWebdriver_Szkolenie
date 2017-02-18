@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ns2:InputTestData xmlns:ns2="urn:org:easetech:easytest:1.0">
+
+    <TestMethod name="registerTest">
+        <Description>Description for this test input instance
+        </Description>
+        <TestRecord id="1">
+            <Description>Description for this test input instance
+            </Description>
+            <InputData>
+                <Entry key="userName" value="Ben"/>
+                <Entry key="password" value="xxx"/>
+                <Entry key="firstName" value="Zenek"/>
+                <Entry key="lastName" value="Daniel"/>
+                <Entry key="phoneNumber" value="245465"/>
+                <Entry key="emailAddress" value="akakak@wp.pl"/>
+                <Entry key="country" value="POLAND"/>
+                <Entry key="addressFirstLine" value="kakakaka"/>
+                <Entry key="addressSecondLine" value="daddadaad"/>
+                <Entry key="city" value="Gdansk"/>
+                <Entry key="state" value="Pomorskie"/>
+                <Entry key="postalCode" value="202020"/>
+            </InputData>
+        </TestRecord>
+        <TestRecord id="2">
+            <Description>This test tries to capture the scenario when the data is
+                available in the DB
+                for the given set of input parameters. In this
+                case the expectedItems
+                should be 1.
+            </Description>
+            <InputData>
+                <Entry key="userName" value="Baaaaen"/>
+                <Entry key="password" value="xsdaxx"/>
+                <Entry key="firstName" value="Lalal"/>
+                <Entry key="lastName" value="Daniel"/>
+                <Entry key="phoneNumber" value="12121212"/>
+                <Entry key="emailAddress" value="ffaaa@wp.pl"/>
+                <Entry key="country" value="POLAND"/>
+                <Entry key="addressFirstLine" value="kakakaka"/>
+                <Entry key="addressSecondLine" value="daddadaad"/>
+                <Entry key="city" value="Krakow"/>
+                <Entry key="state" value="Slalal"/>
+                <Entry key="postalCode" value="555255"/>
+            </InputData>
+        </TestRecord>
+        <TestRecord id="3">
+            <Description>This test tries to capture the scenario when the data is
+                available in the DB
+                for the given set of input parameters. In this
+                case the expectedItems
+                should be 0.
+            </Description>
+            <InputData>
+                <Entry key="userName" value="XXKA"/>
+                <Entry key="password" value="aaaaa"/>
+                <Entry key="firstName" value="Karol"/>
+                <Entry key="lastName" value="KRIS"/>
+                <Entry key="phoneNumber" value="112222"/>
+                <Entry key="emailAddress" value="akakak@wp.pl"/>
+                <Entry key="country" value="POLAND"/>
+                <Entry key="addressFirstLine" value="kakakaka"/>
+                <Entry key="addressSecondLine" value="daddadaad"/>
+                <Entry key="city" value="Warszawa"/>
+                <Entry key="state" value="LLAAAA"/>
+                <Entry key="postalCode" value="55233647"/>
+            </InputData>
+        </TestRecord>
+    </TestMethod>
+
+</ns2:InputTestData>

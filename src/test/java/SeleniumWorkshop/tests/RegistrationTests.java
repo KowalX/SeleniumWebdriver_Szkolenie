@@ -1,12 +1,19 @@
 package SeleniumWorkshop.tests;
 
 import SeleniumWorkshop.pages.PageObjectManager;
+import org.easetech.easytest.annotation.DataLoader;
+import org.easetech.easytest.annotation.Param;
+import org.easetech.easytest.loader.LoaderType;
+import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+@RunWith(DataDrivenTestRunner.class)
+@DataLoader(filePaths = "src/test/resources/DataDrivenTestFile.xml", loaderType = LoaderType.XML, writeData = false)
 public class RegistrationTests {
 
     private static final String PAGE_URL = "http://newtours.demoaut.com";
@@ -22,21 +29,12 @@ public class RegistrationTests {
     }
 
     @Test
-    public void registerTest() throws InterruptedException {
-
-        //Test case properties
-        String userName = "Ben";
-        String password = "xxx";
-        String firstName = "Zenek";
-        String lastName = "Killer";
-        String phoneNumber = "Killer";
-        String emailAddress = "xxx@wp.pl";
-        String country = "POLAND";
-        String addressFirstLine = "krolewska 202";
-        String addressSecondLine = "krol 202";
-        String city = "Gdansk";
-        String state = "Pomorskie";
-        String postalCode = "88-222";
+    public void registerTest(@Param(name = "userName") String userName, @Param(name = "password") String password,
+                             @Param(name = "firstName") String firstName, @Param(name = "lastName") String lastName,
+                             @Param(name = "phoneNumber") String phoneNumber, @Param(name = "emailAddress") String emailAddress,
+                             @Param(name = "country") String country, @Param(name = "addressFirstLine") String addressFirstLine,
+                             @Param(name = "addressSecondLine") String addressSecondLine, @Param(name = "city") String city,
+                             @Param(name = "state") String state, @Param(name = "postalCode") String postalCode) throws InterruptedException {
 
         manager.getHomePage().clickOnRegisterLink();
 

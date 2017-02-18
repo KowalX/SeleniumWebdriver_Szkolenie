@@ -24,6 +24,10 @@ public class UserConverter extends AbstractConverter<User> {
     private static final String POSTAL_CODE = "postalCode";
 
     public User convert(Map<String, Object> convertFrom) {
+        if(convertFrom == null){
+            throw new IllegalArgumentException("Can't convert from not existing map");
+        }
+
         User user = new User();
         user.setUserName((String) convertFrom.get(USERNAME));
         user.setPassword((String) convertFrom.get(PASSWORD));
